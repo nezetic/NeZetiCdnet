@@ -1,0 +1,34 @@
+Name:                NeZetiCdnet
+Version:             0.1
+Synopsis:            NeZetiC website 
+Description:         NeZetiC website
+Homepage:            http://www.nezetic.net
+License:             BSD3
+License-file:        LICENSE
+Author:              Cédric TESSIER <nezetic AT gmail D o T com>
+Maintainer:          
+Copyright:           Cédric TESSIER 2013
+Category:            Web
+Build-type:          Simple
+Cabal-version:       >=1.6
+Extra-source-files:  css/default.hs, js/main.hs
+
+Executable nezetic.net
+  Main-is: Main.hs
+  other-modules: Context.Main, Context.Articles, Context.Posts, Context.Teaser,
+                 Compiler.Categories, Compiler.Html, Compiler.Js, Compiler.Utils,
+                 Config, Routes, Utils
+  Ghc-options: -Wall -O2
+  hs-source-dirs: src
+  Extensions: OverloadedStrings
+  Build-depends:  base < 5 && >= 3, 
+                  binary, 
+                  containers,
+                  filepath, 
+                  utf8-string >= 0.3,
+                  hxt,
+                  jmacro,
+                  hjsmin,
+                  clay,
+                  hakyll >= 4
+
