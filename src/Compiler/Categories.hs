@@ -10,23 +10,22 @@ module Compiler.Categories
 import           Control.Monad            (liftM, forM)
 import           Control.Arrow            (second)
 import           Data.Maybe               (fromMaybe)
-import qualified Data.Map        as M
 import           Hakyll
 
 import Context.Articles
 
 
 parseCategory :: MonadMetadata m => Identifier -> m [String]
-parseCategory identifier = return . toCategoryList . M.lookup "category" =<< getMetadata identifier
+parseCategory identifier = return . toCategoryList . lookupString "category" =<< getMetadata identifier
     where toCategoryList = maybe [] ((:[]) . trim)
 
 
 articlesByCategories :: Tags -> [(String, Pattern)] -> Identifier -> Compiler [Item String]
-articlesByCategories tags pxs template = forM pxs $ \(tag, pattern) -> do 
+articlesByCategories tags pxs tmplt = forM pxs $ \(tag, pattern) -> do
                                   catArticles <- recentFirst =<< loadAll pattern 
                                   catUrl <- urlFromTag tag
                                   let catCtx = articlesByCategoriesCtx catArticles tag catUrl 
-                                  makeItem "" >>= loadAndApplyTemplate template catCtx
+                                  makeItem "" >>= loadAndApplyTemplate tmplt catCtx
             where urlFromTag = liftM ensureRoot . getRoute . tagsMakeId tags
                   ensureRoot = ('/' :) . fromMaybe ""
                                

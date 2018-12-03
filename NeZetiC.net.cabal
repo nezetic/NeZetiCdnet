@@ -23,7 +23,6 @@ Executable nezetic.net
   Extensions: OverloadedStrings
   Build-depends:  base < 5 && >= 3, 
                   binary, 
-                  containers,
                   filepath, 
                   utf8-string >= 0.3,
                   hxt,

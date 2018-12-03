@@ -3,7 +3,6 @@ module Compiler.Utils
     , removeIndexHtml
     ) where
 
-import           Control.Monad            (liftM)
 import           Data.Binary              (Binary)
 import           Data.Typeable            (Typeable)
 import           Data.List                (isInfixOf)
@@ -17,7 +16,7 @@ loadAll' :: (Binary a, Typeable a) => [Pattern] -> Compiler [Item a]
 loadAll' = concatMapM loadAll
 
 concatMapM :: (Monad m) => (a -> m [b]) -> [a] -> m [b]
-concatMapM f xs = liftM concat (mapM f xs)
+concatMapM f xs = fmap concat (mapM f xs)
 
 -- replace url of the form foo/bar/index.html by foo/bar
 removeIndexHtml :: Item String -> Compiler (Item String)

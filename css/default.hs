@@ -17,12 +17,12 @@ theStylesheet =
     do html ?
          do backgroundColor white
             color black 
-            sym margin 0
-            sym padding 0
+            sym margin nil
+            sym padding nil
             defaultFont
        body ?
-         do sym margin  0
-            padding 0 0 60 0 
+         do sym margin nil
+            padding (px 0) 0 60 0 
        theRoot
        theHeader
        theSidebar
@@ -41,27 +41,27 @@ theRoot = do
 
 theLinks :: Css
 theLinks = do 
-       a ? do (":link" <> ":visited") ? do 
-                 color "#2b3e5f"
-                 fontWeight bold
-                 textDecoration none
-              ":hover" ? textDecoration underline 
+       a # ":link" <> ":visited" ? do
+            color "#2b3e5f"
+            fontWeight bold
+            textDecoration none
+       a # hover ? textDecoration underline
        a # ".right" ? float floatRight
 
 
 theImages :: Css
 theImages = do
        img ? border none (px 0) none
-       img # "alt=img_left" ? (float floatLeft >> margin 5 12 5 0)
-       img # "alt=img_right" ? (float floatRight >> margin 5 0 5 12)
-       img # "alt=img_center" ? (display block >> sym2 margin 5 auto) 
-       img # "alt=logo" ? (display block >> sym2 margin 10 auto) 
+       img # "alt=img_left" ? (float floatLeft >> margin (px 5) 12 5 0)
+       img # "alt=img_right" ? (float floatRight >> margin (px 5) 0 5 12)
+       img # "alt=img_center" ? (display block >> sym2 margin (px 5) auto) 
+       img # "alt=logo" ? (display block >> sym2 margin (px 10) auto) 
 
 
 theSections :: Css
 theSections =
     do div # "#main" ?
-         do sym2 margin 0 auto
+         do sym2 margin (px 0) auto
             width (px 860)
        div # "#content" ?
          do width (px 670)
@@ -73,27 +73,27 @@ theEntries :: Css
 theEntries = 
     do ul  # ".posts" ? ("list-style-type" -: "none")
        h2  # ".entrytitle" ? do
-            sym margin 0
-            sym2 padding 5 0
+            sym margin nil
+            sym2 padding (px 5) 0
             entryTitleFont
        h3  # ".entrydate" ? do
             color "#888"
             dateFont
             textAlign (alignSide sideRight)
-            marginBottom 3
+            marginBottom (px 3)
        div # ".entrybody" ? do
             color "#424d53"
             entryBodyFont
-            padding 5 0 10 5
-            marginBottom 25
+            padding (px 5) 0 10 5
+            marginBottom (px 25)
             borderBottom dashed (px 1) "#6d6d6f"
-            p ? do sym2 margin 10 0
-                   paddingLeft 0
+            p ? do sym2 margin (px 10) 0
+                   paddingLeft nil 
             li ? ("list-style-type" -: "disc")
             ol ? do color "#777"
                     "list-style-position" -: "inside"
-                    sym margin 0
-                    sym padding 0
+                    sym margin nil
+                    sym padding nil
                     li ? do backgroundColor "#f9f9f9"
                             border solid (px 1) "#ebebeb"
        div # ".signature" ? textAlign (alignSide sideRight) 
@@ -103,17 +103,17 @@ theTables :: Css
 theTables = 
     table ? do "border-collapse" -: "collapse"
                border solid (px 1) black
-               sym margin 4
+               sym margin (px 4)
                td ? do border solid (px 1) black
-                       sym padding 4
+                       sym padding (px 4)
                th ? do border solid (px 2) black
-                       sym padding 4
+                       sym padding (px 4)
 
 theCodes :: Css
 theCodes = do
     code ? do codeFont
               display block
-              sym padding 3
+              sym padding (px 3)
               backgroundColor "#eee"
               border solid (px 1) "#d3d3d6"
     pre ? do sym margin (px 0)
@@ -129,14 +129,14 @@ theQuotes =
                     border solid (px 1) "#e5e5dd"
                     color "#45453d"
                     fontQuotes
-                    sym2 padding 3 10 
-                    marginLeft 6
+                    sym2 padding (px 3) 10 
+                    marginLeft (px 6)
 
 
 theHeader :: Css
 theHeader = 
     div # "#header" ? 
-         do margin 60 0 30 60
+         do margin (px 60) 0 30 60
             height (px 75)
             headerFont
             a ? textDecoration none 
