@@ -1,0 +1,38 @@
+cabal-version:       2.4
+
+Name:                NeZetiCdnet
+Version:             0.1
+Synopsis:            NeZetiC website
+Description:         Static site generator for NeZetiC.net, built with Hakyll.
+Homepage:            https://www.nezetic.net
+License:             BSD-3-Clause
+License-file:        LICENSE
+Author:              Cédric TESSIER <nezetic@mailbox.org>
+Maintainer:          Cédric TESSIER <nezetic@mailbox.org>
+Copyright:           Cédric TESSIER 2013-2026
+Category:            Web
+Build-type:          Simple
+Extra-source-files:  README.md
+                     .hlint.yaml
+
+Executable nezetic.net
+  Main-is:             Main.hs
+  Other-modules:       Context.Main
+                       Context.Articles
+                       Context.Posts
+                       Context.Teaser
+                       Compiler.Categories
+                       Compiler.Utils
+                       Config
+                       Languages
+                       Routes
+                       Utils
+  Hs-source-dirs:      src
+  Default-language:    Haskell2010
+  Default-extensions:  OverloadedStrings
+  Ghc-options:         -Wall -O2
+  Build-depends:       base      >= 4.12 && < 5
+                     , binary
+                     , filepath
+                     , hakyll    >= 4.16
+                     , pandoc

@@ -1,0 +1,14 @@
+# Hakyll build artefacts
+_cache/
+_site/
+
+# Stack / Cabal build output
+.stack-work/
+dist/
+dist-newstyle/
+*.hi
+*.o
+
+# The linked build binary
+/nezetic.net
+/nezetic.github.io

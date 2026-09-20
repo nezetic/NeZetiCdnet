@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="$lang$" data-auto-lang="$auto_lang$" data-alt-lang="$switch_lang$" data-alt-url="$switch_url_optional$">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="generator" content="Hakyll">
+        <meta name="description" content="$if(description)$$description$$else$$site_description$$endif$">
+
+        <!-- Canonical URL and language alternates. -->
+$canonical_tags$
+$alt_tags$
+$default_tags$
+
+        <title>$if(title)$NeZetiC.net - $title$$else$NeZetiC.net$endif$</title>
+
+        <!-- Language: redirects to the preferred language before first paint. -->
+        <script src="/js/lang.js"></script>
+
+        <!-- Theme: sets data-theme before first paint to avoid a flash. -->
+        <script src="/js/theme.js"></script>
+
+        <!-- Stylesheets. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+        <link rel="stylesheet" href="/css/default.css">
+
+        <!-- Favicons. SVG with dark-mode colour swap, PNG fallback, iOS icon. -->
+        <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+        <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+
+        <!-- Feeds. -->
+        <link rel="alternate" type="application/atom+xml" title="NeZetiC.net - Atom 1.0" href="$atom_url$">
+        <link rel="alternate" type="application/rss+xml" title="NeZetiC.net - RSS" href="$rss_url$">
+
+        <!-- Fonts. -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div id="main">
+            <nav id="languages">
+                <a href="$switch_url$" hreflang="$switch_lang$">$switch_label$</a>
+                <button id="theme-toggle" type="button" aria-label="$theme_toggle$" title="$theme_toggle$">
+                    <img class="icon-moon" src="/images/theme-moon.svg" alt="" width="20" height="20">
+                    <img class="icon-sun" src="/images/theme-sun.svg" alt="" width="20" height="20">
+                </button>
+            </nav>
+            <header id="header">
+                <a href="$home_url$">NeZetiC.net</a>
+            </header>
+            <!-- Sidebar. -->
+            <aside id="sidebar">
+$sidebar$
+$if(projects)$
+<h1>$projects_heading$</h1>
+$for(projects)$
+<a href="$url$">$title$</a>
+$endfor$
+$endif$
+            </aside>
+            <!-- Main content. -->
+            <main id="content">
+$body$
+            </main>
+            <footer id="footer">
+                $generated_by$ <a href="https://jaspervdj.be/hakyll/">Hakyll</a>.
+            </footer>
+        </div>
+
+        <!-- Javascripts. -->
+        <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+        <script src="/js/main.js"></script>
+    </body>
+</html>

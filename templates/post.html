@@ -1,0 +1,18 @@
+<div id="posts">
+    <ul class="posts">
+        <li class="entry">
+        <h2 class="entrytitle"><a href="$url$">$title$</a></h2>
+
+        <div class="entrybody">
+            $body$
+
+            <div class="signature"><p>$by$ <em>$author$</em> $on$ <strong><time datetime="$date_iso$">$date$</time></strong></p></div>
+        </div>
+
+        <nav class="postnav">
+        $if(prev_url)$<span class="prev">&laquo; <a href="$prev_url$" rel="prev">$prev_title$</a></span>$endif$
+        $if(next_url)$<span class="next"><a href="$next_url$" rel="next">$next_title$</a> &raquo;</span>$endif$
+        </nav>
+        </li>
+    </ul>
+</div>

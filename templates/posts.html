@@ -1,0 +1,11 @@
+<div id="posts">
+<h1>$all_writings$</h1>
+$for(years)$
+    <h2 class="year">$year$</h2>
+    <ul class="posts">
+    $for(posts)$
+$partial("templates/postitem.html")$
+    $endfor$
+    </ul>
+$endfor$
+</div>

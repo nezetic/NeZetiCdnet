@@ -1,0 +1,10 @@
+<h2>$recent_articles$</h2>
+<ul class="posts">
+    $for(articles)$
+    $partial("templates/articleitem.html")$
+    $endfor$
+</ul>
+<h2>$articles_by_category$</h2>
+    $for(articlesbycategory)$
+    $body$
+    $endfor$

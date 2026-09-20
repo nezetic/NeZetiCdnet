@@ -1,0 +1,393 @@
+/* NeZetiC.net default stylesheet
+ *
+ * Colors live in CSS custom properties so that the dark theme is a pure
+ * palette swap: the light values below mirror the original Clay-generated
+ * stylesheet so the desktop rendering is unchanged. Responsive tweaks live
+ * only in the final media query.
+ */
+
+:root {
+    color-scheme: light;
+    --bg: rgb(255, 255, 255);
+    --text: rgb(0, 0, 0);
+    --link: rgb(43, 62, 95);
+    --border: rgb(0, 0, 0);
+    --muted: rgb(136, 136, 136);
+    --body-text: rgb(66, 77, 83);
+    --rule: rgb(109, 109, 111);
+    --code-bg: rgb(238, 238, 238);
+    --code-border: rgb(211, 211, 214);
+    --quote-bg: rgb(245, 245, 237);
+    --quote-border: rgb(229, 229, 221);
+    --quote-text: rgb(69, 69, 61);
+    --sidebar-heading: rgb(34, 34, 51);
+    --ol-text: rgb(119, 119, 119);
+    --ol-bg: rgb(249, 249, 249);
+    --ol-border: rgb(235, 235, 235);
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: rgb(24, 26, 30);
+    --text: rgb(224, 226, 229);
+    --link: rgb(151, 178, 219);
+    --border: rgb(112, 116, 122);
+    --muted: rgb(150, 153, 158);
+    --body-text: rgb(197, 202, 208);
+    --rule: rgb(90, 95, 102);
+    --code-bg: rgb(39, 42, 47);
+    --code-border: rgb(64, 68, 74);
+    --quote-bg: rgb(34, 37, 42);
+    --quote-border: rgb(58, 62, 68);
+    --quote-text: rgb(168, 172, 164);
+    --sidebar-heading: rgb(214, 217, 222);
+    --ol-text: rgb(160, 164, 170);
+    --ol-bg: rgb(31, 34, 38);
+    --ol-border: rgb(56, 60, 66);
+}
+
+html {
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Verdana, sans-serif;
+    line-height: 140%;
+}
+
+body {
+    margin: 0;
+    padding: 0 0 60px 0;
+}
+
+a:link,
+a:visited {
+    color: var(--link);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a.right {
+    float: right;
+}
+
+img {
+    border: none;
+    max-width: 100%;
+    height: auto;
+}
+
+img[alt="img_left"]   { float: left;  margin: 5px 12px 5px 0; }
+img[alt="img_right"]  { float: right; margin: 5px 0 5px 12px; }
+img[alt="img_center"] { display: block; margin: 5px auto; }
+img[alt="logo"]       { display: block; margin: 10px 0; width: 24px; height: 24px; }
+
+table {
+    border-collapse: collapse;
+    border: solid 1px var(--border);
+    margin: 4px;
+}
+
+table td {
+    border: solid 1px var(--border);
+    padding: 4px;
+}
+
+table th {
+    border: solid 2px var(--border);
+    padding: 4px;
+}
+
+code {
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-size: 12px;
+    font-weight: normal;
+    display: block;
+    padding: 3px;
+    background-color: var(--code-bg);
+    border: solid 1px var(--code-border);
+    overflow-x: auto;
+}
+
+pre {
+    margin: 0;
+}
+
+pre code {
+    margin: 0;
+    display: block;
+    padding: 8px;
+}
+
+blockquote {
+    background-color: var(--quote-bg);
+    border: solid 1px var(--quote-border);
+    color: var(--quote-text);
+    font-family: sans-serif;
+    font-weight: normal;
+    font-style: italic;
+    padding: 3px 10px;
+    margin-left: 6px;
+}
+
+#main {
+    margin: 0 auto;
+    max-width: 860px;
+}
+
+#header {
+    margin: 60px 0 30px 60px;
+    height: 75px;
+    font-family: "Finger Paint", cursive;
+    font-weight: bold;
+    font-size: 70px;
+    background-image: url("/images/code-small.png");
+    background-repeat: no-repeat;
+    background-position: right top;
+}
+
+/* No colour override here: the title keeps the link colour. */
+#header a {
+    text-decoration: none;
+}
+
+/* Dark mode: use the light-on-transparent variant of the title logo. */
+:root[data-theme="dark"] #header {
+    background-image: url("/images/code-small-dark.png");
+}
+
+/* Language switcher and theme toggle, in the free space above the header. */
+#languages {
+    margin: 12px 0 0;
+    text-align: right;
+    font-family: sans-serif;
+    font-weight: normal;
+    font-size: 15px;
+}
+
+#languages a {
+    font-weight: normal;
+}
+
+#theme-toggle {
+    display: inline-grid;
+    margin-left: 12px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    line-height: 0;
+    vertical-align: middle;
+}
+
+/* Both icons are stacked in the same grid cell; the one matching the current
+ * theme is visible, the other is shrunk away. Each SVG carries its own fixed
+ * colour matching the theme it is shown in (external SVGs cannot inherit
+ * currentColor). */
+#theme-toggle img {
+    grid-area: 1 / 1;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+#theme-toggle .icon-moon {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+:root[data-theme="dark"] #theme-toggle .icon-moon {
+    opacity: 0;
+    transform: scale(0.5) rotate(45deg);
+}
+
+#theme-toggle .icon-sun {
+    opacity: 0;
+    transform: scale(0.5) rotate(-45deg);
+}
+
+:root[data-theme="dark"] #theme-toggle .icon-sun {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #theme-toggle img {
+        transition: none;
+    }
+}
+
+#sidebar {
+    margin-left: 20px;
+    width: 170px;
+    float: right;
+}
+
+#sidebar a {
+    clear: both;
+    display: block;
+    float: right;
+    margin-bottom: 10px;
+    font-family: sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+#sidebar h1 {
+    color: var(--sidebar-heading);
+    clear: both;
+    float: right;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    font-weight: normal;
+    font-size: 24px;
+}
+
+#content {
+    width: 670px;
+    float: right;
+}
+
+ul.posts {
+    list-style-type: none;
+}
+
+/* Year headings on the posts page. */
+h2.year {
+    clear: both;
+    margin: 25px 0 0;
+    padding: 5px 0;
+    color: var(--muted);
+    font-family: "Century Gothic", "Lucida Grande", sans-serif;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+/* Previous/next post navigation. */
+.postnav {
+    clear: both;
+    overflow: hidden;
+    margin: 10px 0 20px;
+    font-family: sans-serif;
+    font-weight: normal;
+    font-size: 15px;
+}
+
+.postnav .prev { float: left; }
+.postnav .next { float: right; }
+
+h2.entrytitle {
+    margin: 0;
+    padding: 5px 0;
+    font-family: "Century Gothic", "Lucida Grande", sans-serif;
+    font-weight: normal;
+    font-size: 22px;
+}
+
+h3.entrydate {
+    color: var(--muted);
+    font-family: sans-serif;
+    font-weight: normal;
+    font-size: 16px;
+    text-align: right;
+    margin-bottom: 3px;
+}
+
+.entrybody {
+    color: var(--body-text);
+    font-family: sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    padding: 5px 0 10px 5px;
+    margin-bottom: 25px;
+    border-bottom: dashed 1px var(--rule);
+}
+
+.entrybody p {
+    margin: 10px 0;
+    padding-left: 0;
+}
+
+.entrybody li {
+    list-style-type: disc;
+}
+
+.entrybody ol {
+    color: var(--ol-text);
+    list-style-position: inside;
+    margin: 0;
+    padding: 0;
+}
+
+.entrybody ol li {
+    background-color: var(--ol-bg);
+    border: solid 1px var(--ol-border);
+}
+
+.signature {
+    text-align: right;
+}
+
+#footer {
+    padding-top: 30px;
+    clear: both;
+    font-family: sans-serif;
+    font-weight: normal;
+    font-size: 90%;
+    font-style: italic;
+    text-align: center;
+}
+
+/* ---- GLightbox caption --------------------------------------------- */
+
+/* Keep the caption bar compact instead of the roomy GLightbox default. */
+.glightbox-clean .gdesc-inner {
+    padding: 8px 16px;
+}
+
+.glightbox-clean .gslide-title {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.3;
+    color: var(--body-text);
+}
+
+/* ---- Small screens (the only intentional deviation) ------------------ */
+
+@media (max-width: 760px) {
+    body {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    #header {
+        margin: 30px 0 2.5rem;
+        height: auto;
+        font-size: clamp(2.5rem, 12vw, 70px);
+        background-image: none;
+    }
+
+    /* Same specificity as the dark-mode rule above, so it wins inside this
+     * media query regardless of source order. */
+    :root[data-theme="dark"] #header {
+        background-image: none;
+    }
+
+    #sidebar,
+    #content {
+        float: none;
+        width: auto;
+    }
+
+    #sidebar {
+        margin: 0 0 2rem;
+    }
+
+    #sidebar a,
+    #sidebar h1 {
+        float: none;
+    }
+}

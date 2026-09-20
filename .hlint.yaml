@@ -1,0 +1,19 @@
+# HLint configuration for the NeZetiC.net generator.
+# See https://github.com/ndmitchell/hlint#configuration for the full format.
+#
+# Run from the project root with::
+#
+#     make lint
+#
+# HLint exits non-zero when hints are found, so `make lint` can gate CI.
+
+# Parse the sources with the same language extensions as NeZetiCdnet.cabal.
+- arguments:
+    - -XHaskell2010
+    - -XOverloadedStrings
+
+# Hints that are not useful for this project can be disabled, e.g.:
+#
+# - ignore:
+#     name: Redundant do
+#     within: [Main]

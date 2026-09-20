@@ -1,0 +1,12 @@
+<li class="entry">
+    <h2 class="entrytitle"><a href="$url$">$title$</a></h2>
+    <div class="entrybody">
+    $if(teaser)$
+    $teaser$
+    <p class="readmore"><a href="$url$">$read_more$ &raquo;</a></p>
+    $else$
+    $body$
+    $endif$
+    <h3 class="entrydate"><time datetime="$date_iso$">$date$</time></h3>
+    </div>
+</li>
